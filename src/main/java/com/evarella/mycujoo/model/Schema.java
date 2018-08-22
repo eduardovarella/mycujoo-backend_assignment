@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by Eduardo on 22/08/2018.
+ * Model class to hold schema data
  */
 public class Schema {
     private String type;

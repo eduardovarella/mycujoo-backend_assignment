@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by Eduardo on 22/08/2018.
+ * Service class that implements all the SQL command generation
  */
 public class SQLCommandService {
 
@@ -27,12 +28,14 @@ public class SQLCommandService {
         this.configuration = configuration;
     }
 
+    // Service
     public void generateCreateTableCommandsFromSubjects() throws Exception {
 
         String sqlCommand = "";
+        // Loading subject list from first endpoint
         List<Subject> subjects = this.loadSubjectsList();
         for (Subject subject : subjects) {
-
+            // For each subject, load and parse JSON schema definition
             SchemaDefinition schemaDefinition = this.getSchemaDefinitionFromSubject(subject);
             sqlCommand += this.buildCreateTableCommand(schemaDefinition);
         }

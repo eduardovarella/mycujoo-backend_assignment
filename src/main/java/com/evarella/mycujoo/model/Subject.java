@@ -2,6 +2,7 @@ package com.evarella.mycujoo.model;
 
 /**
  * Created by Eduardo on 22/08/2018.
+ * Model class to hold subject data
  */
 public class Subject {
 

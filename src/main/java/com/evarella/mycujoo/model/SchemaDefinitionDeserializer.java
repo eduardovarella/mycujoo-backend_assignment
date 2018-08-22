@@ -14,6 +14,7 @@ import java.io.IOException;
 
 /**
  * Created by Eduardo on 22/08/2018.
+ * Jackson customized deserializer. It was necessary due to schema information being passed as an stringyfied json
  */
 public class SchemaDefinitionDeserializer extends StdDeserializer<SchemaDefinition> {
 
@@ -25,16 +26,19 @@ public class SchemaDefinitionDeserializer extends StdDeserializer<SchemaDefiniti
         super(vc);
     }
 
+
     @Override
     public SchemaDefinition deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
         JsonNode node = jp.getCodec().readTree(jp);
 
+        // Capturing basic fields
         String subject = node.get("subject").asText();
         int version = (Integer) ((IntNode) node.get("version")).numberValue();
         int id = (Integer) ((IntNode) node.get("id")).numberValue();
 
         String schemaString = node.get("schema").asText();
 
+        // Parsing schema string using an other customized deserialized for the fields
         ObjectMapper mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
         module.addDeserializer(Field.class, new FieldDeserializer());

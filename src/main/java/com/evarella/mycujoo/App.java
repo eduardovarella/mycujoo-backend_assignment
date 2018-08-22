@@ -27,6 +27,7 @@ public class App {
 
         String confFileName = args[0];
 
+        // Loading configuration data using Jackson
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         Configuration configuration = null;
         try {
@@ -37,6 +38,7 @@ public class App {
             return;
         }
 
+        // Executing main process
         SQLCommandService service = new SQLCommandService(configuration);
         try {
             service.generateCreateTableCommandsFromSubjects();

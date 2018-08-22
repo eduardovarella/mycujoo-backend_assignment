@@ -2,6 +2,7 @@ package com.evarella.mycujoo.model;
 
 /**
  * Created by Eduardo on 22/08/2018.
+ * Model class to hold schema definition data
  */
 public class SchemaDefinition {
 
@@ -53,6 +54,7 @@ public class SchemaDefinition {
         this.schema = schema;
     }
 
+    // Method to create database table name
     public String getDatabaseTableName() {
         return this.getSchema().getName().replaceAll("-", "_");
     }

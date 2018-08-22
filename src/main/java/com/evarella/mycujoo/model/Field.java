@@ -2,6 +2,7 @@ package com.evarella.mycujoo.model;
 
 /**
  * Created by Eduardo on 22/08/2018.
+ * Model class to hold field data
  */
 public class Field {
     private String name;
@@ -42,6 +43,7 @@ public class Field {
         this.nullable = nullable;
     }
 
+    // Method to convert type to database type
     public String getDatabaseType() {
         switch (this.getType()){
             case "string":

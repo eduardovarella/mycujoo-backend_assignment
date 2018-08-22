@@ -12,6 +12,7 @@ import java.io.IOException;
 
 /**
  * Created by Eduardo on 22/08/2018.
+ * Jackson customized deserializer. It was necessary due to diferences in the fields JSON structure
  */
 public class FieldDeserializer extends StdDeserializer<Field> {
 
@@ -31,6 +32,7 @@ public class FieldDeserializer extends StdDeserializer<Field> {
         String type = node.get("type").asText();
         boolean nullable = false;
 
+        // If type property is an array, nullable will be true and must check array elements to define type
         if(node.get("type").isArray()){
             type = node.get("type").get(0).asText();
             if(type.equals("null"))
@@ -44,6 +46,7 @@ public class FieldDeserializer extends StdDeserializer<Field> {
             }
             nullable = true;
         }
+        // If type property is an object, nullable will be false and type will always be string
         else if(node.get("type").isObject()){
             type = "string";
             nullable = false;
