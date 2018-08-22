@@ -2,13 +2,14 @@
 
 Assignment projetct for MyCujoo backend position.
 
-This application reads schema information from an API asnd generates corresponding CREATE TABLE commands.
+This application reads schema information from an API and generates corresponding CREATE TABLE commands.
 
 ## Assumptions
 1) The create table commands are targeting MySQL 5.7
 2) Subject names are being used as table names, replacing "-" character with "_"
 3) Every table will have the first column as primary key
 4) "string" field type is being converted to "varchar(255)"
+5) Java and Gradle are already installed and avaible in the PATH environment variable
 
 ## Installation
 ```bash
