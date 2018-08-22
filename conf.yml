@@ -1,0 +1,9 @@
+# API endpoint to load subjects list
+subjectsURL: https://s3-eu-west-1.amazonaws.com/mycujoo-assignments/be-assignment/subjects.json
+
+# API endpoint prefix to load schema definition
+# Will be used as follows: <schemaURLPrefix><subject-name>.json
+schemaURLPrefix: https://s3-eu-west-1.amazonaws.com/mycujoo-assignments/be-assignment/
+
+# Output file path
+outputFile: commands.sql
