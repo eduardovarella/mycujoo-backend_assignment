@@ -54,6 +54,6 @@ public class SchemaDefinition {
     }
 
     public String getDatabaseTableName() {
-        return this.getSubject().replaceAll("-", "_");
+        return this.getSchema().getName().replaceAll("-", "_");
     }
 }

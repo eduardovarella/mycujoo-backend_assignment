@@ -18,7 +18,7 @@ public class LoadSubjectListUnitTests {
     public final void emptyArrayReturned() throws Exception, HttpUtilsException {
 
         SQLCommandService service = spy(SQLCommandService.class);
-        doReturn(new String[0]).when(service).getSubjectNamesArray();
+        doReturn("[]").when(service).loadSubjectListFromAPI();
         List<Subject> subjects = service.loadSubjectsList();
         Assert.assertEquals(0, subjects.size());
     }
@@ -26,14 +26,13 @@ public class LoadSubjectListUnitTests {
     @Test
     public final void validSubjects() throws Exception, HttpUtilsException {
 
-        String[] subjectNames = {"S1", "S2", "S3"};
         SQLCommandService service = spy(SQLCommandService.class);
-        doReturn(subjectNames).when(service).getSubjectNamesArray();
+        doReturn("[\"S1\",\"S2\",\"S3\"]").when(service).loadSubjectListFromAPI();
 
         List<Subject> subjects = service.loadSubjectsList();
         Assert.assertEquals(3, subjects.size());
-        Assert.assertEquals(subjectNames[0], subjects.get(0).getName());
-        Assert.assertEquals(subjectNames[1], subjects.get(1).getName());
-        Assert.assertEquals(subjectNames[2], subjects.get(2).getName());
+        Assert.assertEquals("S1", subjects.get(0).getName());
+        Assert.assertEquals("S2", subjects.get(1).getName());
+        Assert.assertEquals("S3", subjects.get(2).getName());
     }
 }

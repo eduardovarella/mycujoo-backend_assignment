@@ -40,7 +40,7 @@ public class SQLCommandService {
         this.writeCommandToFile(sqlCommand);
     }
 
-    private void writeCommandToFile(String command) throws Exception {
+    void writeCommandToFile(String command) throws Exception {
         String filePath = this.configuration.getOutputFile();
         System.out.print("Writting output to " + filePath);
         PrintWriter out = null;
@@ -54,7 +54,7 @@ public class SQLCommandService {
         System.out.println(": Done!");
     }
 
-    private String buildCreateTableCommand(SchemaDefinition schemaDefinition) {
+    String buildCreateTableCommand(SchemaDefinition schemaDefinition) {
 
         String command = "CREATE TABLE `" + schemaDefinition.getDatabaseTableName() + "` (\n";
         for (Field field : schemaDefinition.getSchema().getFields()) {
@@ -65,7 +65,7 @@ public class SQLCommandService {
         return command;
     }
 
-    private SchemaDefinition getSchemaDefinitionFromSubject(Subject subject) throws Exception {
+    SchemaDefinition getSchemaDefinitionFromSubject(Subject subject) throws Exception {
         System.out.print("Parsing subject '" + subject.getName() + "'");
         String jsonString = loadSchemaDefinitionFromAPI(subject);
         SchemaDefinition schemaDefinition = parseSchemaDefinitionFromJsonString(jsonString);
@@ -73,7 +73,7 @@ public class SQLCommandService {
         return schemaDefinition;
     }
 
-    private SchemaDefinition parseSchemaDefinitionFromJsonString(String jsonString) throws Exception {
+    SchemaDefinition parseSchemaDefinitionFromJsonString(String jsonString) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
         module.addDeserializer(SchemaDefinition.class, new SchemaDefinitionDeserializer());
@@ -86,7 +86,7 @@ public class SQLCommandService {
         }
     }
 
-    private String loadSchemaDefinitionFromAPI(Subject subject) throws Exception {
+    String loadSchemaDefinitionFromAPI(Subject subject) throws Exception {
         String url = configuration.getSchemaURLPrefix() + subject.getName() + ".json";
         try {
             return HttpUtils.get(url);
@@ -100,7 +100,7 @@ public class SQLCommandService {
         return this.parseSubjectListFromJsonString(jsonString);
     }
 
-    private String[] parseSubjectListFromJsonString(String jsonString) throws Exception {
+    String[] parseSubjectListFromJsonString(String jsonString) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(jsonString, String[].class);
@@ -109,7 +109,7 @@ public class SQLCommandService {
         }
     }
 
-    private String loadSubjectListFromAPI() throws Exception {
+    String loadSubjectListFromAPI() throws Exception {
         try {
             return HttpUtils.get(configuration.getSubjectsURL());
         } catch (HttpUtilsException e) {
