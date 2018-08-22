@@ -15,7 +15,7 @@ import java.util.List;
 public class LoadSubjectListUnitTests {
 
     @Test
-    public final void emptyArrayReturned() throws IOException, HttpUtilsException {
+    public final void emptyArrayReturned() throws Exception, HttpUtilsException {
 
         SQLCommandService service = spy(SQLCommandService.class);
         doReturn(new String[0]).when(service).getSubjectNamesArray();
@@ -24,7 +24,7 @@ public class LoadSubjectListUnitTests {
     }
 
     @Test
-    public final void validSubjects() throws IOException, HttpUtilsException {
+    public final void validSubjects() throws Exception, HttpUtilsException {
 
         String[] subjectNames = {"S1", "S2", "S3"};
         SQLCommandService service = spy(SQLCommandService.class);
