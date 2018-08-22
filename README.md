@@ -9,7 +9,7 @@ This application reads schema information from an API and generates correspondin
 2) Subject names are being used as table names, replacing "-" character with "_"
 3) Every table will have the first column as primary key
 4) "string" field type is being converted to "varchar(255)"
-5) Java and Gradle are already installed and avaible in the PATH environment variable
+5) Java and Gradle are already installed and available in the PATH environment variable
 
 ## Installation
 ```bash
